@@ -1,3 +1,5 @@
+// check if a number is palindrome
+
 import java.util.*;
 
 public class PalindromeNumber {
@@ -23,5 +25,22 @@ public class PalindromeNumber {
         }
 
         sc.close();
+    }
+}
+
+
+// minimum steps find distance between a to b
+
+import java.util.Scanner;
+
+public class MinimumSteps {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int distance = sc.nextInt();
+
+        int steps = (distance + 4) / 5;
+
+        System.out.println("Minimum Steps = " + steps);
     }
 }
