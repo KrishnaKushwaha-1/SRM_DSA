@@ -44,3 +44,21 @@ public class MinimumSteps {
         System.out.println("Minimum Steps = " + steps);
     }
 }
+
+// divisility by 3 and win chance of a and b
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int num = sc.nextInt();
+
+        if (num % 3 == 0) {
+            System.out.println("B wins");
+        } else {
+            System.out.println("A wins");
+        }
+    }
+}
