@@ -1,10 +1,8 @@
-// middle of linked list
-
+// 1- middle of the linked list 
 
 
 class Solution {
     public ListNode middleNode(ListNode head) {
-
         ListNode slow = head;
         ListNode fast = head;
 
@@ -17,15 +15,103 @@ class Solution {
     }
 }
 
-
-// delete node in a linked list 
-
+-------------------------------------------------------------------------------------------------------------------
+// 2- delete node in a linked list 
 
 class Solution {
     public void deleteNode(ListNode node) {
-
         node.val = node.next.val;
         node.next = node.next.next;
-
     }
 }
+
+
+-------------------------------------------------------------------------------------------------------------------
+3- Linked list Cycle detection 
+
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+--------------------------------------------------------------------------------------------------------------------
+// 4- Valid parentheses Using Stack 
+
+
+import java.util.Stack;
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else {
+
+                if (stack.isEmpty()) {
+                    return false;
+                }
+
+                char top = stack.pop();
+
+                if ((ch == ')' && top != '(') ||
+                    (ch == '}' && top != '{') ||
+                    (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------
+// 5- Undo and Redo Operations Using Stack
+
+import java.util.Stack;
+
+public class UndoRedo {
+    public static void main(String[] args) {
+
+        Stack<Integer> undo = new Stack<>();
+        Stack<Integer> redo = new Stack<>();
+
+        undo.push(10);
+        undo.push(20);
+        undo.push(30);
+
+        System.out.println("Undo Stack: " + undo);
+
+        // Undo Operation
+        redo.push(undo.pop());
+
+        System.out.println("After Undo: " + undo);
+
+        // Redo Operation
+        undo.push(redo.pop());
+
+        System.out.println("After Redo: " + undo);
+    }
+}
+
+
+
+
+
