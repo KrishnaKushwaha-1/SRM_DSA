@@ -1,22 +1,44 @@
-// 1- middle of the linked list 
-
+1. Middle of the Linked List(LeetCode 876)...
 
 class Solution {
     public ListNode middleNode(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
 
-        while (fast != null && fast.next != null) {
+        while(fast != null && fast.next != null)
+        {
             slow = slow.next;
             fast = fast.next.next;
         }
-
         return slow;
     }
 }
 
--------------------------------------------------------------------------------------------------------------------
-// 2- delete node in a linked list 
+-----------------------------------------------------------------------------------------
+
+2. Linked List Cycle(LeetCode 141)...
+
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+3. Delete Node in a Linked List(LeetCode 237)...
 
 class Solution {
     public void deleteNode(ListNode node) {
@@ -25,93 +47,102 @@ class Solution {
     }
 }
 
+------------------------------------------------------------------------------------------
 
--------------------------------------------------------------------------------------------------------------------
-3- Linked list Cycle detection 
+4. Reverse Linked List(LeetCode 206)...
 
-public class Solution {
-    public boolean hasCycle(ListNode head) {
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode curr = head, prev = null, next;
+        while(curr != null)
+        {
+        next = curr.next;
+        curr.next = prev;
+
+        prev = curr;
+        curr = next;
+        }
+        
+        return prev;
+    }
+}
+
+------------------------------------------------------------------------------------------
+
+5. Palindrome Linked List(LeetCode 234)...
+
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head == null || head.next == null){
+            return true;
+        }
+
         ListNode slow = head;
         ListNode fast = head;
 
-        while (fast != null && fast.next != null) {
+        while(fast != null && fast.next != null)
+        {
             slow = slow.next;
             fast = fast.next.next;
+        } 
+        ListNode prev = null;
+        ListNode curr = slow;
 
-            if (slow == fast) {
-                return true;
-            }
+        while(curr != null)
+        {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
+        ListNode first = head;
+        ListNode second = prev;
 
-        return false;
+        while(second != null){
+
+            if(first.val != second.val){
+                return false;
+            }
+            first = first.next;
+            second = second.next;
+        }
+        return true;
     }
 }
 
+------------------------------------------------------------------------------------------
 
---------------------------------------------------------------------------------------------------------------------
-// 4- Valid parentheses Using Stack 
-
-
-import java.util.Stack;
+6. Valid Parentheses(LeetCode 20)...
 
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
+        Stack<Character> st = new Stack<>();
 
-        for (char ch : s.toCharArray()) {
+        for(int i=0;i<s.length();i++)
+        {
+            char ch = s.charAt(i);
 
-            if (ch == '(' || ch == '{' || ch == '[') {
-                stack.push(ch);
-            } else {
+            if(ch == '(' || ch == '{' || ch == '[')
+            st.push(ch);
 
-                if (stack.isEmpty()) {
-                    return false;
-                }
+            else{
+                if(st.isEmpty())
+                return false;
 
-                char top = stack.pop();
+                char top = st.pop();
 
-                if ((ch == ')' && top != '(') ||
-                    (ch == '}' && top != '{') ||
-                    (ch == ']' && top != '[')) {
-                    return false;
-                }
+                if(ch == ')' && top != '(')
+                return false;
+
+                else if(ch == '}' && top != '{')
+                return false;
+
+                else if(ch == ']' && top != '[')
+                return false;
             }
         }
-
-        return stack.isEmpty();
+        return st.isEmpty();
     }
 }
 
--------------------------------------------------------------------------------------------------------------------------
-// 5- Undo and Redo Operations Using Stack
-
-import java.util.Stack;
-
-public class UndoRedo {
-    public static void main(String[] args) {
-
-        Stack<Integer> undo = new Stack<>();
-        Stack<Integer> redo = new Stack<>();
-
-        undo.push(10);
-        undo.push(20);
-        undo.push(30);
-
-        System.out.println("Undo Stack: " + undo);
-
-        // Undo Operation
-        redo.push(undo.pop());
-
-        System.out.println("After Undo: " + undo);
-
-        // Redo Operation
-        undo.push(redo.pop());
-
-        System.out.println("After Redo: " + undo);
-    }
-}
-
-
-
-
-
+------------------------------------------------------------------------------------------
